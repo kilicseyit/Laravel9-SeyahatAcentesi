@@ -16,5 +16,6 @@ class HomeController extends Controller
      public function test($id)
      {
          echo "Id number: ", $id;
+
      }
 }
