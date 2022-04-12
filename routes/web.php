@@ -14,13 +14,24 @@ use Illuminate\Support\Facades\Route;
 laravel9j
 //
 */
-
-Route::get('/home2', function () {
+// 1-Do something in route
+Route::get('/hello', function () {
+    return 'Hello World';
+});
+// 2-Call view in route
+Route::get('/', function () {
     return view('welcome');
 });
+
+// 3-Call Controller function asdasdaasda
+
+
+
+
 Route::redirect('/anasayfa', '/home')->name('anasayfa');
 
-Route::get('/', function () {
+Route::get('/home2', function () {
+
     return view('home.index', ['name' => 'Seyit']);
 });
 
@@ -28,6 +39,7 @@ Route::get('/', function () {
 
      Route::get('/home', [homecontroller::class, 'index'])->name('home');
      Route::get('/test/{id}/{name}', [homecontroller::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');
+     Route::get('/param/{id}/{number}', [homecontroller::class, 'param'])->whereNumber('id')->whereAlpha('name')->name('param');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
