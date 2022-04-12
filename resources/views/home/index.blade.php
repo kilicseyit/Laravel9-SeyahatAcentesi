@@ -119,7 +119,7 @@
             </div>
         </div>
     </div>
-    asdasjhsajdasda
+    asdasjhsajdasdad
 
     <div class="contact" id="contact">
         <div class="violet-overlay">
