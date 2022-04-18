@@ -60,8 +60,8 @@
             </li>
             <li class="nav-item menu-items">
                 <a class="nav-link" href="/admin">
-              <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+              <span style="color: #2caae1"class="menu-icon">
+                <ion-icon name="home"></ion-icon>
               </span>
                     <span class="menu-title">Dashboard</span>
                 </a>
@@ -79,23 +79,32 @@
               <span style="color: #fffa39" class="menu-icon">
                 <ion-icon name="briefcase-outline"></ion-icon>
               </span>
-                    <span class="menu-title">Orders</span>
+                    <span class="menu-title">Reservation</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html" style="color: #9b1308">New Order</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/dropdowns.html" style="color: #999b04">Accepting Order</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html" style="color: #00ac4a">Complated Order</a></li>
-                    </ul>
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html" style="color: #9b1308">New Reserv</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/dropdowns.html" style="color: #999b04">Accepted Reserv</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html" style="color: #00ac4a">Shipping Reserv</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html" style="color: #00ac4a">Complated Reserv</a></li>
+                        </ul>
                 </div>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/product">
+                <a class="nav-link" href="/admin/package">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-                    <span class="menu-title">Product</span>
+                    <span class="menu-title">Package</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/admin/image">
+              <span style="color: #783ee3"class="menu-icon">
+                  <ion-icon name="aperture-outline"></ion-icon>
+              </span>
+                    <span class="menu-title">Image</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -125,7 +134,7 @@
             <li class="nav-item menu-items">
                 <a class="nav-link" href="/admin/users">
               <span style="color: #6efff2" class="menu-icon">
-                <ion-icon name="person-outline"></ion-icon>
+                <ion-icon name="person-circle-outline"></ion-icon>
               </span>
                     <span class="menu-title">Users</span>
                 </a>
@@ -141,7 +150,7 @@
             <li class="nav-item menu-items">
                 <a class="nav-link" href="/admin/setting">
               <span style="color: #00ac4a" class="menu-icon">
-                <ion-icon s name="settings-outline"></ion-icon>
+                <ion-icon name="hammer-sharp"></ion-icon>
               </span>
                     <span class="menu-title">Settings</span>
                 </a>

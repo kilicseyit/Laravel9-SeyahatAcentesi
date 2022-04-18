@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title','Add Category')
+@section('title','Edit Category : ' .$data -> title)
 
 
 
@@ -9,39 +9,37 @@
     <div class="main-panel">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Category Elements</h4>
-                <p class="card-description"> Basic form layout </p>
-                <form class="forms-sample" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+                <h4 class="card-title">Edit Category:  {{$data ->title}} </h4>
+                <form class="forms-sample" action="{{route('admin.category.update',['id'=> $data -> id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputUsername1">Title</label>
-                        <input type="text" class="form-control" name="title" placeholder="Title">
+                        <input type="text" class="form-control" name="title" value="{{$data->title}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Keywords</label>
-                        <input type="text" class="form-control" name="keywords" placeholder="Keywords">
+                        <input type="text" class="form-control" name="keywords" value="{{$data->keywords}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDescription1">Description</label>
-                        <input type="text" class="form-control" name="description" placeholder="description">
+                        <input type="text" class="form-control" name="description" value="{{$data->description}}">
                     </div>
-                    <div class="form-group">
-                        <label>File upload</label>
-                        <input type="file" name="image" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
-                            <span class="input-group-append">
+                    <div
+                    <div class="input-group col-xs-12">
+                        <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
+                        <span class="input-group-append">
                             <input type="file" name="image">
                           </span>
-                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Status</label>
                         <select style="color: #0f6674" class="form-control"  name="status">
+                            <option selected>{{$data->status}}</option>
                             <option>True</option>
                             <option>False</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button type="submit" class="btn btn-primary mr-2">Update Date</button>
                     <button class="btn btn-dark">Cancel</button>
                 </form>
             </div>
@@ -51,5 +49,3 @@
         </div>
 
 @endsection
-
-
