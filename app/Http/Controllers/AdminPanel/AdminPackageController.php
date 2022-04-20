@@ -4,11 +4,12 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 
-class CategoryController extends Controller
+class AdminPackageController extends Controller
 {
 
     protected  $appends = [
@@ -21,7 +22,7 @@ class CategoryController extends Controller
         {
             return $title;
         }
-        $parent = Category::find($category->parent_id);
+        $parent = Package::find($category->parent_id);
         $title = $parent->title . '>' . $title;
         return  CategoryController::getParentsTree($parent,$title);
 
@@ -33,8 +34,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-         $data= Category::all();
-        return view('admin.category.index',[
+         $data= Package::all();
+        return view('admin.package.index',[
             'data' => $data
         ]);
     }
@@ -46,8 +47,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $data= Category::all();
-        return view('admin.category.create',[
+        $data= Package::all();
+        return view('admin.package.create',[
             'data' => $data
         ]);
 
@@ -83,8 +84,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category,$id)
     {
-        $data= Category::find($id);
-        return view('admin.category.show',[
+        $data= Package::find($id);
+        return view('admin.package.show',[
             'data' => $data
         ]);
     }
@@ -97,9 +98,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category,$id)
     {
-        $data= Category::find($id);
-        $datalist= Category::all();
-        return view('admin.category.edit',[
+        $data= Package::find($id);
+        $datalist= Package::all();
+        return view('admin.package.edit',[
             'data' => $data,
             'datalist' => $datalist
         ]);
@@ -114,7 +115,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category,$id)
     {
-        $data= Category::find($id);
+        $data= Package::find($id);
         $data->parent_id = $request->parent_id;
         $data->title = $request-> title;
         $data->keywords = $request-> keywords;
@@ -135,7 +136,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category,$id)
     {
-        $data = Category::find($id);
+        $data = Package::find($id);
         Storage::delete($data->image);
         $data->delete();
         return redirect('admin/category');

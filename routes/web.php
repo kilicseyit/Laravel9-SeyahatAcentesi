@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminPackagesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
@@ -12,8 +13,6 @@ use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryControlle
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-laravel9j-deneme
-//asdasdasda
 */
 // 1-Do something in route
 Route::get('/hello', function () {
@@ -45,8 +44,8 @@ Route::get('/home2', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
 // ************************ ADMIN PANEL ROUTES *********************//
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/admin', [AdminHomeController::class, 'index'])->name('index');
+    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 // ************************ ADMİN CATEGORY ROUTES ******************//
     Route::prefix('category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
         Route::get('/','index')->name('index');
@@ -57,6 +56,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/destroy/{id}','destroy')->name('destroy');
         Route::get('/show/{id}','show')->name('show');
     });
-});
+
+        // ************************ ADMİN PACKAGE ROUTES ******************//
+        Route::prefix('/package')->name('package.')->controller(AdminPackageController::class)->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/create','create')->name('create');
+            Route::post('/store','store')->name('store');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
+            Route::get('/show/{id}','show')->name('show');
+        });
+    });
 
 
