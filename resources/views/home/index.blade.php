@@ -56,7 +56,7 @@
             <div id="slideToNext" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="imgs/pic4.jpg" class="d-block w-100" alt="...">
+                        <img src="assets/imgs/pic4.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="assets/imgs/pic3.jpg" class="d-block w-100" alt="...">
@@ -119,7 +119,6 @@
             </div>
         </div>
     </div>
-    asdasjhsajdasdad
 
     <div class="contact" id="contact">
         <div class="violet-overlay">

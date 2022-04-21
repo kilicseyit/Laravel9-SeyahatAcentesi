@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
-            $table->foreignId('user_id');
+            $table->foreignId('category_id')->nullable();
+            $table->foreignId('user_id')>nullable();
             $table->string('title');
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('detail')->nullable();
+            $table->text('detail')->nullabale();
             $table->float('price')->nullable();
             $table->integer('quantity')->nullable();
             $table->integer('minquantity')->nullable();

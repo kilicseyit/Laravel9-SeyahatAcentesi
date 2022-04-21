@@ -31,23 +31,23 @@
                         </thead>
                         <tbody>
                         @foreach($data as $rs)
-                            <tr>
-                                <td>{{$rs -> id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category,$rs->category->title) }}</td>
-                                <td>{{$rs -> title}} </td>
-                                <td>{{$rs -> price}} </td>
-                                <td>{{$rs -> quantity}} </td>
+                        <tr>
+                            <td>{{$rs -> id}}</td>
+                            <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title) }}</td>
+                            <td>{{$rs -> title}} </td>
+                            <td>{{$rs -> price}} </td>
+                            <td>{{$rs -> quantity}} </td>
 
-                                <td>
-                                    @if ($rs->image)
-                                        <img src="{{Storage::url($rs->image)}}">
-                                    @endif
-                                </td>
-                                <td>{{$rs -> status}}</td>
-                                <td><a href="{{route('admin.package.edit',['id'=> $rs -> id])}}" class="badge badge-info">Edit</a> </td>
-                                <td><a href="{{route('admin.package.destroy',['id'=> $rs -> id])}}"class="badge badge-danger btn-fw" onclick="return confirm('Deleting !! Are you sure ?')">Delete</a> </td>
-                                <td><a href="{{route('admin.package.show',['id'=> $rs -> id])}}"class="badge badge-success">Show</a> </td>
-                            </tr>
+                            <td>
+                                @if ($rs->image)
+                                <img src="{{Storage::url($rs->image)}}">
+                                @endif
+                            </td>
+                            <td>{{$rs -> status}}</td>
+                            <td><a href="{{route('admin.package.edit',['id'=> $rs -> id])}}" class="badge badge-info">Edit</a> </td>
+                            <td><a href="{{route('admin.package.destroy',['id'=> $rs -> id])}}"class="badge badge-danger btn-fw" onclick="return confirm('Deleting !! Are you sure ?')">Delete</a> </td>
+                            <td><a href="{{route('admin.package.show',['id'=> $rs -> id])}}"class="badge badge-success">Show</a> </td>
+                        </tr>
                         @endforeach
 
 

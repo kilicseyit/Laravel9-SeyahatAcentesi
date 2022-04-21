@@ -2,9 +2,6 @@
 
 @section('title','Category List')
 
-
-
-
 @section('content')
     <div class="main-panel">
         <h1> Category List </h1>
@@ -19,8 +16,10 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Parent</th>
+                            <th>Category</th>
                             <th>Title</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th style="width: 40px">Edit</th>
@@ -32,20 +31,23 @@
                         </thead>
                         <tbody>
                         @foreach($data as $rs)
-                        <tr>
-                            <td>{{$rs -> id}}</td>
-                            <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title) }}</td>
-                            <td>{{$rs -> title}} </td>
-                            <td>
-                                @if ($rs->image)
-                                <img src="{{Storage::url($rs->image)}}">
-                                @endif
-                            </td>
-                            <td>{{$rs -> status}}</td>
-                            <td><a href="{{route('admin.category.edit',['id'=> $rs -> id])}}" class="badge badge-info">Edit</a> </td>
-                            <td><a href="{{route('admin.category.destroy',['id'=> $rs -> id])}}"class="badge badge-danger btn-fw" onclick="return confirm('Deleting !! Are you sure ?')">Delete</a> </td>
-                            <td><a href="{{route('admin.category.show',['id'=> $rs -> id])}}"class="badge badge-success">Show</a> </td>
-                        </tr>
+                            <tr>
+                                <td>{{$rs -> id}}</td>
+                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title) }}</td>
+                                <td>{{$rs -> title}} </td>
+                                <td>{{$rs -> price}} </td>
+                                <td>{{$rs -> quantity}} </td>
+
+                                <td>
+                                    @if ($rs->image)
+                                        <img src="{{Storage::url($rs->image)}}">
+                                    @endif
+                                </td>
+                                <td>{{$rs -> status}}</td>
+                                <td><a href="{{route('admin.category.edit',['id'=> $rs -> id])}}" class="badge badge-info">Edit</a> </td>
+                                <td><a href="{{route('admin.category.destroy',['id'=> $rs -> id])}}"class="badge badge-danger btn-fw" onclick="return confirm('Deleting !! Are you sure ?')">Delete</a> </td>
+                                <td><a href="{{route('admin.category.show',['id'=> $rs -> id])}}"class="badge badge-success">Show</a> </td>
+                            </tr>
                         @endforeach
 
 

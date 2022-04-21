@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title','Edit Category : ' .$data -> title)
+@section('title','Edit Package : ' .$data -> title)
 
 
 
@@ -9,16 +9,15 @@
     <div class="main-panel">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Edit Category:  {{$data ->title}} </h4>
-                <form class="forms-sample" action="{{route('admin.category.update',['id'=> $data -> id])}}" method="post" enctype="multipart/form-data">
+                <h4 class="card-title">Edit Package:  {{$data ->title}} </h4>
+                <form class="forms-sample" action="{{route('admin.package.update',['id'=> $data -> id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Parent Category</label>
-
-                        <select class="form-control select2" name="parent_id" style="color: #6a6f85";>
-                            <option value="0" selected="selected">Main Category</option>
+                        <select class="form-control select2" name="category_id" style="color: #6a6f85";>
+                            <option value="0" selected="selected">Main Package</option>
                             @foreach($datalist as $rs)
-                                <option value="{{ $rs -> id }}" @if($rs->id == $data -> parent_id) selected="selected" @endif >
+                                <option value="{{ $rs -> id }}" @if($rs->id == $data -> category_id) selected="selected" @endif >
                                     {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs -> title) }}
                                 </option>
                             @endforeach
@@ -37,7 +36,28 @@
                         <label for="exampleInputDescription1">Description</label>
                         <input type="text" class="form-control" name="description" value="{{$data->description}}">
                     </div>
-                    <div
+                    <div class="form-group">
+                        <label for="exampleInputDescription1">Price</label>
+                        <input type="number" class="form-control" name="price" value="{{$data->price}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDescription1">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" value="{{$data->quantity}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDescription1">Min Quantity </label>
+                        <input type="number" class="form-control" name="minquantity" value="{{$data->minquantity}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDescription1">Tax %</label>
+                        <input type="number" class="form-control" name="tax" value="{{$data->tax}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDescription1">Detail </label>
+                        <textarea class="form-control" name="detail">
+                            {{$data->detail}}
+                        </textarea>
+                    </div>
                     <div class="input-group col-xs-12">
                         <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
                         <span class="input-group-append">

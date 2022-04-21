@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Package extends Model
 {
     use HasFactory;
+
+    #Many to one
+    public function  category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

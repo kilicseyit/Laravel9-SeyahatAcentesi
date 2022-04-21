@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminPackageController;
 use App\Http\Controllers\AdminPanel\AdminPackagesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
