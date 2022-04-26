@@ -21,27 +21,30 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Image</th>
+                            <th>Image Gallery</th>
                             <th>Status</th>
                             <th style="width: 40px">Edit</th>
                             <th style="width: 40px">Delete</th>
                             <th style="width: 40px">Show</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($data as $rs)
                             <tr>
                                 <td>{{$rs -> id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category,$rs->category->title) }}</td>
+                                <td>{{ \App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category, $rs->category->title) }}</td>
                                 <td>{{$rs -> title}} </td>
                                 <td>{{$rs -> price}} </td>
                                 <td>{{$rs -> quantity}} </td>
-
                                 <td>
                                     @if ($rs->image)
                                         <img src="{{Storage::url($rs->image)}}">
                                     @endif
+                                </td>
+                                <td> <a href="{{route('admin.image.index',['pid'=> $rs -> id])}}"
+                                        onclick="return !window.open(this.href, '','top=50 left=100 width=1100,height=700')">
+                                    <img src="/assets/admin/assets/images/gallery.jpg" style="height: 30px">
+                                    </a>
                                 </td>
                                 <td>{{$rs -> status}}</td>
                                 <td><a href="{{route('admin.package.edit',['id'=> $rs -> id])}}" class="badge badge-info">Edit</a> </td>
@@ -49,9 +52,6 @@
                                 <td><a href="{{route('admin.package.show',['id'=> $rs -> id])}}"class="badge badge-success">Show</a> </td>
                             </tr>
                         @endforeach
-
-
-
                         </tbody>
                     </table>
                 </div>

@@ -25,8 +25,6 @@
                             <th style="width: 40px">Edit</th>
                             <th style="width: 40px">Delete</th>
                             <th style="width: 40px">Show</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +35,6 @@
                                 <td>{{$rs -> title}} </td>
                                 <td>{{$rs -> price}} </td>
                                 <td>{{$rs -> quantity}} </td>
-
                                 <td>
                                     @if ($rs->image)
                                         <img src="{{Storage::url($rs->image)}}">

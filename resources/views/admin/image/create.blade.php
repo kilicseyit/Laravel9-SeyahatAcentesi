@@ -1,19 +1,23 @@
 @extends('layouts.adminbase')
 
-@section('title','Package Category')
+@section('title','Add Category')
+
+
+
 
 @section('content')
     <div class="main-panel">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Package Elements</h4>
+                <h4 class="card-title">Category Elements</h4>
                 <p class="card-description"> Basic form layout </p>
 
                 <div class="form-group">
                     <label>Parent Category</label>
 
-                <form class="forms-sample" action="{{route('admin.package.store')}}" method="post" enctype="multipart/form-data">
-                    <select class="form-control select2" name="category_id" style="color: #6a6f85";>
+                <form class="forms-sample" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+                    <select class="form-control select2" name="parent_id" style="color: #6a6f85";>
+                        <option value="0" selected="selected">Main Category</option>
                         @foreach($data as $rs)
                             <option value="{{$rs->id}}"> {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}} </option>
                         @endforeach
@@ -34,36 +38,16 @@
                         <input type="text" class="form-control" name="description" placeholder="description">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputDescription1">Price</label>
-                        <input type="number" class="form-control" name="price" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputDescription1">Quantity</label>
-                        <input type="number" class="form-control" name="quantity" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputDescription1">Min Quantity </label>
-                        <input type="number" class="form-control" name="minquantity" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputDescription1">Tax %</label>
-                        <input type="number" class="form-control" name="tax" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputDescription1">Detail </label>
-                        <textarea class="form-control" name="detail">
-                        </textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>File upload</label>
-                        <input type="file" name="image" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
-                            <span class="input-group-append">
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="image" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
                             <input type="file" name="image">
                           </span>
-                        </div>
+                            </div>
+
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Status</label>
                         <select style="color: #6a6f85" class="form-control"  name="status">
