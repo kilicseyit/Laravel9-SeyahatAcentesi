@@ -1,6 +1,10 @@
 @extends('layouts.adminbase')
 
 @section('title','Edit Package : ' .$data -> title)
+@section('head')
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
 
 
 
@@ -54,9 +58,19 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDescription1">Detail </label>
-                        <textarea class="form-control" name="detail">
+                        <textarea class="form-control" id='detail' name="detail">
                             {{$data->detail}}
                         </textarea>
+                        <script>
+                            ClassicEditor
+                                .create( document.querySelector( '#detail' ) )
+                                .then( editor => {
+                                    console.log( editor );
+                                } )
+                                .catch( error => {
+                                    console.error( error );
+                                } );
+                        </script>
                     </div>
                     <div class="input-group col-xs-12">
                         <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
@@ -81,4 +95,14 @@
         <div class="content-wrapper">
         </div>
 
+@endsection
+@section('foot')
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $('.textarea').summernote()
+        })
+        </script>
 @endsection

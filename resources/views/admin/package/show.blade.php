@@ -49,7 +49,7 @@
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->minquantity}}</td>
                                 <td>{{$data->tax}}</td>
-                                <td>{{$data->detail}}</td>
+                                <td>{!! $data->detail !!}</td>
                                 <td>{{$data->image}}</td>
                                 <td>{{$data->status}}</td>
                                 <td>{{$data->created_at}}</td>

@@ -3,8 +3,6 @@
 
 @section('title', 'Travel agency Project ')
 
-
-
 @section('content')
     <div class="about-us" id="about">
         <div class="small-container">
