@@ -1,7 +1,11 @@
 
 @extends('layouts.frontbase')
 
-@section('title', 'Travel agency Project ')
+@section('title', $setting->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('icon',Storage::url($setting->icon))
+
 
 @section('content')
     <div class="about-us" id="about">
@@ -53,20 +57,18 @@
         <div class="small-container">
             <div id="slideToNext" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/imgs/pic4.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imgs/pic3.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imgs/pic2.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    @foreach($sliderdata as $rs)
+                        <div class="carousel-item @once active @endonce" >
+                            <a href="{{route('package',['id' =>$rs->id])}}"><img src="{{Storage::url($rs->image)}}" class="d-block w-100" alt="..."></a>
+                        </div>
+                    @endforeach
+
                 </div>
                 <a class="carousel-control-prev" href="#slideToNext" role="button" data-slide="prev">
                     <i class="fas fa-chevron-left fa-2x"></i>
                     <span class="sr-only">Previous</span>
                 </a>
+
                 <a class="carousel-control-next" href="#slideToNext" role="button" data-slide="next">
                     <i class="fas fa-chevron-right fa-2x"></i>
                     <span class="sr-only">Next</span>
@@ -74,7 +76,6 @@
             </div>
         </div>
     </div>
-
     <div class="agency" id="agency">
         <div class="white-overlay">
             <div class="container">
@@ -87,6 +88,33 @@
                     <img src="assets/imgs/airplane.png">
                 </div>
                 <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look likeIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as o</p>
+            </div>
+        </div>
+    </div>
+<br>
+
+    <div class="services" >
+        <div class="container" style="">
+            <h2 class="text-center">Latest <span>Tours</span></h2>
+        </div>
+        <br>
+        <div class="small-container">
+            <div id="slideToNext1" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach($sliderdata as $rs)
+                        <div class="carousel-item @once active @endonce" >
+                            <img src="{{Storage::url($rs->image)}}" class="d-block w-100" alt="...">
+                        </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#slideToNext1" role="button" data-slide="prev">
+                    <i class="fas fa-chevron-left fa-2x"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#slideToNext1" role="button" data-slide="next">
+                    <i class="fas fa-chevron-right fa-2x"></i>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
     </div>

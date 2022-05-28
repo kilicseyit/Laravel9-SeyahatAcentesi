@@ -20,15 +20,6 @@ use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryControlle
 Route::get('/hello', function () {
     return 'Hello World';
 });
-// 2-Call view in route
-Route::get('/', function () {
-    return view('home.index');
-});
-
-
-
-
-
 
 Route::redirect('/anasayfa', '/home')->name('anasayfa');
 
@@ -39,15 +30,21 @@ Route::get('/home2', function () {
 
 
 
-     Route::get('/home', [homecontroller::class, 'index'])->name('home');
+     Route::get('/', [HomeController::class, 'index'])->name('home');
      Route::get('/test/{id}/{name}', [homecontroller::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');
      Route::get('/param/{id}/{number}', [homecontroller::class, 'param'])->whereNumber('id')->whereAlpha('name')->name('param');
+     Route::get('/package/{id}', [Homecontroller::class, 'package'])->name('package');
+     Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
+     Route::get('/categorypackages/{id}/{slug}', [HomeController::class, 'categorypackages'])->name('categorypackages');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
 // ************************ ADMIN PANEL ROUTES *********************//
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+        // ************************ GENERAL ROUTES ******************//
+        Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
+        Route::get('/setting', [AdminHomeController::class, 'settingUpdate'])->name('setting.update');
 // ************************ ADMİN CATEGORY ROUTES ******************//
         Route::prefix('category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
             Route::get('/', 'index')->name('index');

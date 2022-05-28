@@ -3819,6 +3819,7 @@
           pseudoElementsCallback: searchPseudoElements
         });
       });
+
     }
 
     namespace.hooks = _objectSpread({}, namespace.hooks, {
