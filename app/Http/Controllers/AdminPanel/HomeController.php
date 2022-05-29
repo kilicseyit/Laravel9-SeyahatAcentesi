@@ -15,7 +15,6 @@ class HomeController extends Controller
     public function setting()
     {
         $data=Setting::first();
-
         if($data==null)
         {
             $data = new Setting();
