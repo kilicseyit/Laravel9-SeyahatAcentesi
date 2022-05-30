@@ -29,8 +29,15 @@ Route::get('/home2', function () {
 });
 
 
+// ************************ HOME PAGE ROUTES *********************//
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/references', [HomeController::class, 'references'])->name('references');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
      Route::get('/test/{id}/{name}', [homecontroller::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');
      Route::get('/param/{id}/{number}', [homecontroller::class, 'param'])->whereNumber('id')->whereAlpha('name')->name('param');
      Route::get('/package/{id}', [Homecontroller::class, 'package'])->name('package');

@@ -10,16 +10,16 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">about</a>
-                </li>
-                    <a class="nav-link" href="{{route('categories')}}">Kategoriler</a>
-                <li class="nav-item">
+
+                    <a class="nav-link" href="{{route('about')}}">about</a>
+
+                    <a class="nav-link" href="{{route('categories')}}">Categories</a>
+
                     <a class="nav-link" href="#agency">travel agency</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">contact us</a>
-                </li>
+
+                <a class="nav-link" href="{{route('contact')}}">contact us</a>
+
+                <a class="nav-link" href="{{route('references')}}">References</a>
                 <li class="nav-item .search-container">
                     <a class="nav-link search" href="#"><i class="fas fa-search"></i></a>
                     <form>
