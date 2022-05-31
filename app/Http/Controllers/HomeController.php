@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Package;
 use App\Models\Setting;
 use Hamcrest\Core\Set;
@@ -61,6 +62,19 @@ class HomeController extends Controller
 
         ]);
     }
+    public function storemessage(Request $request)
+    {
+        //dd($request);
+      $data=new Message();
+      $data->name = $request->input('name');
+      $data->email = $request->input('email');
+      $data->phone = $request->input('phone');
+      $data->subject = $request->input('subject');
+      $data->message = $request->input('message');
+      $data->ip=request()->ip();
+      $data->save();
+      return redirect()->route('contact')->with('info','Your message has been sent , Thank You');
+    }
     public function categories()
     {
 
@@ -91,9 +105,8 @@ class HomeController extends Controller
 
     public function package($id)
     {
-        $images = DB::table('images')->where('package_id', $id)->get();
         $data=Package::find($id);
-
+        $images = DB::table('images')->where('package_id', $id)->get();
         return view('home.package',[
             'data'=>$data,
             'images'=>$images,

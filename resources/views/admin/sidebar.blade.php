@@ -124,7 +124,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/messages">
+                <a class="nav-link" href="{{route('admin.message.index')}}">
               <span class="menu-icon">
                <ion-icon name="chatbubble-outline"></ion-icon>
               </span>
