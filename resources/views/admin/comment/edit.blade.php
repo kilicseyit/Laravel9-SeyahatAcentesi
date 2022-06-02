@@ -6,25 +6,26 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 @endsection
 
+
+
+
 @section('content')
     <div class="main-panel">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Edit Package: {{$data ->title}} </h4>
-                <form class="forms-sample" action="{{route('admin.package.update',['id'=> $data -> id])}}" method="post"
-                      enctype="multipart/form-data">
+                <h4 class="card-title">Edit Package:  {{$data ->title}} </h4>
+                <form class="forms-sample" action="{{route('admin.package.update',['id'=> $data -> id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Parent Category</label>
-                        <select class="form-control select2" name="category_id" style="color: #6a6f85" ;>
+                        <select class="form-control select2" name="category_id" style="color: #6a6f85";>
                             <option value="0" selected="selected">Main Package</option>
                             @foreach($datalist as $rs)
-                                <option value="{{ $rs -> id }}"
-                                        @if($rs->id == $data -> category_id) selected="selected" @endif >
+                                <option value="{{ $rs -> id }}" @if($rs->id == $data -> category_id) selected="selected" @endif >
                                     {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs -> title) }}
                                 </option>
                             @endforeach
-                        </select>
+                        </select >
 
                     </div>
                     <div class="form-group">
@@ -62,25 +63,24 @@
                         </textarea>
                         <script>
                             ClassicEditor
-                                .create(document.querySelector('#detail'))
-                                .then(editor => {
-                                    console.log(editor);
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                });
+                                .create( document.querySelector( '#detail' ) )
+                                .then( editor => {
+                                    console.log( editor );
+                                } )
+                                .catch( error => {
+                                    console.error( error );
+                                } );
                         </script>
                     </div>
                     <div class="input-group col-xs-12">
-                        <input type="text" name="image" class="form-control file-upload-info"
-                               placeholder="Upload Image">
+                        <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
                         <span class="input-group-append">
                             <input type="file" name="image">
                           </span>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Status</label>
-                        <select style="color: #0f6674" class="form-control" name="status">
+                        <select style="color: #0f6674" class="form-control"  name="status">
                             <option selected>{{$data->status}}</option>
                             <option>True</option>
                             <option>False</option>
@@ -95,14 +95,14 @@
         <div class="content-wrapper">
         </div>
 
-        @endsection
-        @section('foot')
+@endsection
+@section('foot')
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-            <script>
-                $(function () {
+    <script>
+        $(function () {
 
-                    $('.textarea').summernote()
-                })
-            </script>
+            $('.textarea').summernote()
+        })
+        </script>
 @endsection

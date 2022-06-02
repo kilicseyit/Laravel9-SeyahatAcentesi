@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Package;
 use App\Models\Setting;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -62,6 +65,17 @@ class HomeController extends Controller
 
         ]);
     }
+    public function faq()
+    {
+        $setting= Setting::first();
+        $datalist= Faq::all();
+        return view('home.faq',[
+            'setting'=>$setting,
+            'datalist'=>$datalist,
+
+
+        ]);
+    }
     public function storemessage(Request $request)
     {
         //dd($request);
@@ -75,6 +89,22 @@ class HomeController extends Controller
       $data->save();
       return redirect()->route('contact')->with('info','Your message has been sent , Thank You');
     }
+
+    public function storecomment(Request $request)
+    {
+        //dd($request); //Check your values
+
+        $data=new Comment();
+        $data->user_id =  Auth::id(); //logged in user id
+        $data->package_id = $request->input('package_id');
+        $data->subject = $request->input('subject');
+        $data->review = $request->input('review');
+        $data->rate = $request->input('rate');
+        $data->ip=request()->ip();
+        $data->save();
+        return redirect()->route('package',['id'=>$request->input('package_id')])->with('info','Your comment has been sent , Thank You');
+    }
+
     public function categories()
     {
 
@@ -107,9 +137,12 @@ class HomeController extends Controller
     {
         $data=Package::find($id);
         $images = DB::table('images')->where('package_id', $id)->get();
+        $reviews = Comment::where('package_id',$id)->get();
         return view('home.package',[
             'data'=>$data,
             'images'=>$images,
+            'reviews'=>$reviews,
+
         ]);
     }
 

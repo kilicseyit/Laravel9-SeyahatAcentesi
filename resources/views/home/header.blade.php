@@ -20,6 +20,7 @@
                 <a class="nav-link" href="{{route('contact')}}">contact us</a>
 
                 <a class="nav-link" href="{{route('references')}}">References</a>
+                <a class="nav-link" href="{{route('faq')}}">FAQ</a>
                 <li class="nav-item .search-container">
                     <a class="nav-link search" href="#"><i class="fas fa-search"></i></a>
                     <form>
