@@ -145,33 +145,35 @@ class HomeController extends Controller
 
         ]);
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-     public function test($id,$name)
-     {
-         echo "Parameter 1:", $id;
-         echo "<br>Parameter 2:", $name;
-         echo "<br>Id Number:", $id;
-         echo "<br> Name:", $name;
+        $request->session()->invalidate();
 
-         for ($i = 1; $i <= $id; $i++) {
-             echo "<br> $i - $name";
-         }
-     }
+        $request->session()->regenerateToken();
 
+        return redirect('/');
+    }
 
-     /*    public function param ($id,$number)
-     {
-         /*echo "Parameter 1 :", $id;
-         echo "<br>Parameter 2 :", $number;
-         echo "<br>Sum Parameters :", $id+$number ;
+    public function loginadmincheck(Request $request)
+    {
+        //dd($request);
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-         return view('home.test2',
-         [
-              'id' => $id,
-            'number' => $number
-              ]);
-*/
+            return redirect()->intended('/admin');
+        }
+
+        return back()->withErrors([
+            'error' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
      }
 
 

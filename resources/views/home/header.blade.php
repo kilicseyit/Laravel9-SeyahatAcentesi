@@ -27,9 +27,10 @@
                         <input type="search">
                     </form>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-user"></i></a>
-                </li>
+
+                    <a class="nav-link" href="/registeruser"><i class="far fa-user"></i></a>
+                <a class="nav-link" href="/loginuser"><i class="far fa-user"></i></a>
+                <a class="nav-link" href="/logoutuser"><i class="far fa-user"></i></a>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="far fa-heart"></i></a>
                 </li>

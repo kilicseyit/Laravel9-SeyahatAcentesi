@@ -1,6 +1,6 @@
 @extends('layouts.adminwindow')
 
-@section('title','Show Message : ' .$data -> title)
+@section('title','User Detail :' .$data -> title)
 
 @section('content')
     <div class="main-panel">
@@ -14,12 +14,9 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Product</th>
-                                <th>Name & Surname</th>
-                                <th>Subject</th>
-                                <th>Message</th>
-                                <th>Ip Number</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>E mail</th>
+                                <th>Roles</th>
                                 <th>Created Date</th>
                                 <th>Update Date</th>
                                 <th>Admin Note</th>
@@ -27,33 +24,33 @@
                             <tbody>
                             <tr>
                                 <td>{{$data->id}}</td>
-                                <td>{{$data->package->title}}</td>
-                                <td>{{$data->user->name}}</td>
-                                <td>{{$data->subject}}</td>
-                                <td>{{$data->rate}}</td>
-                                <td>{{$data->IP}}</td>
-                                <td>{{$data->status}}</td>
+                                <td>{{$data->name}}</td>
+                                <td>{{$data->email}}</td>
+                                <td>
+                                    @foreach($data->roles as $role)
+                                        {{$role->name}}
+                                        <a href="{{route('admin.user.destroyrole',['uid'=> $data -> id,'rid'=> $role -> id ])}}"class="badge badge-danger btn-fw" onclick="return confirm('Deleting !! Are you sure ?')">[x]</a>
+                                        @endforeach
+                                </td>
+
                                 <td>{{$data->created_at}}</td>
                                 <td>{{$data->updated_at}}</td>
                                 <td>
-                                    <form class="forms-sample" action="{{route('admin.comment.update',['id'=> $data -> id])}}" method="post">
+                                    <form class="forms-sample" action="{{route('admin.user.addrole',['id'=> $data -> id])}}" method="post">
                                         @csrf
-                                        <select name="status">
-                                            <option selected>{{$data->status}}</option>
-                                            <option>True</option>
-                                            <option>False</option>
+                                        <select name="role_id">
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                            @endforeach
                                         </select>
-
-                                        <button type="submit" class="btn btn-primary mr-2">Update Comment</button>
+                                        <button type="submit" class="btn btn-primary mr-2">Add Role</button>
                                     </form>
                                 </td>
                             </tr>
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="content-wrapper">
 @endsection

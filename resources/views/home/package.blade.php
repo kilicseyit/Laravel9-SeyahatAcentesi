@@ -12,38 +12,46 @@
             background-color: white;
             overflow: hidden;
         }
-        *{
+
+        * {
             margin: 0;
             padding: 0;
         }
+
         .rate {
             float: left;
             height: 46px;
             padding: 0 10px;
         }
+
         .rate:not(:checked) > input {
-            position:absolute;
-            top:-9999px;
+            position: absolute;
+            top: -9999px;
         }
+
         .rate:not(:checked) > label {
-            float:right;
-            width:1em;
-            overflow:hidden;
-            white-space:nowrap;
-            cursor:pointer;
-            font-size:30px;
-            color:#ccc;
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
         }
+
         .rate:not(:checked) > label:before {
             content: '★ ';
         }
+
         .rate > input:checked ~ label {
             color: #ffc700;
         }
+
         .rate:not(:checked) > label:hover,
         .rate:not(:checked) > label:hover ~ label {
             color: #deb217;
         }
+
         .rate > input:checked + label:hover,
         .rate > input:checked + label:hover ~ label,
         .rate > input:checked ~ label:hover,
@@ -195,7 +203,7 @@
                 <div class="d-flex flex-row">
                     <div class="icons mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                             class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></div>
-                    <span>1200 ratings &amp; 564 reviews</span>
+                    <span>{{$data->comment->count('id')}} / Review(s) / Add Review</span>
                 </div>
                 <div class="d-flex align-items-center mt-4 offers mb-1"><i class="fa fa-check-square-o mt-1"></i><span
                         class="ml-1 font-weight-bold">{{$data->title}}</span><span style="margin-top: 17px"
@@ -216,20 +224,26 @@
         </div>
     </div>
     <div class="container">
-        <form class="forms-sample" action="{{route("storecomment")}}" method="post" >
+        <form class="forms-sample" action="{{route("storecomment")}}" method="post">
             @csrf
             <input class="input" type="hidden" name="package_id" value="{{$data->id}}">
             <h2>Write Your Review</h2>
             <div class="form-group">
                 <div class="input-group" href="#review">
-                    <strong class="text-uppercase ">Your Rating :   </strong>
+                    <strong class="text-uppercase ">Your Rating : </strong>
+                    @php
+                    $average = $data->comment->average('rate');
+                        @endphp
+
                     <div class="rate text-center">
-                        <input type="radio" id="star5" name="rate" value="5" /><label for="star5" ></label>
-                        <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                        <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                        <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                        <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                        <input type="radio" id="star5" name="rate" value="5"/><label for="star5"></label>
+                        <input type="radio" id="star4" name="rate" value="4"/><label for="star4"></label>
+                        <input type="radio" id="star3" name="rate" value="3"/><label for="star3"></label>
+                        <input type="radio" id="star2" name="rate" value="2"/><label for="star2"></label>
+                        <input type="radio" id="star1" name="rate" value="1"/><label for="star1"></label>
                     </div>
+                    <br>
+                    <span>Average Rate :{{number_format($average,1)}}</span>
                 </div>
             </div>
 
@@ -262,13 +276,13 @@
                     <div class="col-sm-5 col-md-6 col-12 pb-4">
                         <h1>Comments</h1>
                         @foreach($reviews as $rs)
-                        <div class="comment mt-4 text-justify">
-                            <h4>{{$rs->user->name}}</h4>
-                            <span>{{$rs->created_at}}</span>
-                            <br>
-                            <span>User Rate : {{$rs->rate}}</span>
-                            <p>{{$rs->review}}</p>
-                        </div>
+                            <div class="comment mt-4 text-justify">
+                                <h4>{{$rs->user->name}}</h4>
+                                <span>{{$rs->created_at}}</span>
+                                <br>
+                                <span>User Rate : {{$rs->rate}}</span>
+                                <p>{{$rs->review}}</p>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -411,6 +425,9 @@
         }
     </script>
 @endsection
+@php
+    /* $avarage = $data->comment->avarage('rate');
 
-
+ */
+@endphp
 

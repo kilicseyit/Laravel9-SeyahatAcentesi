@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanel\AdminPackageController;
 use App\Http\Controllers\AdminPanel\AdminPackagesController;
+use App\Http\Controllers\AdminPanel\AdminUserController;
 use App\Http\Controllers\AdminPanel\CommentController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
@@ -41,6 +42,11 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/storemessage', [HomeController::class, 'storemessage'])->name('storemessage');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::post('/storecomment', [HomeController::class, 'storecomment'])->name('storecomment');
+Route::view('/loginuser', 'home.login')->name('loginuser');
+Route::view('/registeruser', 'home.register')->name('legisteruser');
+Route::get('/logoutuser', [HomeController::class, 'logout'])->name('logoutuser');
+Route::view('/loginadmin', 'admin.login ')->name('loginadmin');
+Route::post('/loginadmincheck', [HomeController::class, 'loginadmincheck'])->name('loginadmincheck');
 
 
 Route::get('/test/{id}/{name}', [homecontroller::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');
@@ -55,7 +61,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 // ************************ ADMIN PANEL ROUTES *********************//
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
 
@@ -116,6 +122,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/show/{id}', 'show')->name('show');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+    // ************************ ADMİN USER ROUTES ******************//
+    Route::prefix('/user')->name('user.')->controller(AdminUserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/edit/{id}', 'show')->name('edit');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::post('/addrole/{id}', 'addrole')->name('addrole');
+        Route::get('/destroyrole/{uid}/{rid}', 'destroyrole')->name('destroyrole');
+
     });
 });
 

@@ -132,7 +132,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/users">
+                <a class="nav-link" href="/admin/user">
               <span style="color: #6efff2" class="menu-icon">
                 <ion-icon name="person-circle-outline"></ion-icon>
               </span>
