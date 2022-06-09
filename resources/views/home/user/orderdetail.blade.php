@@ -1,6 +1,6 @@
 @extends('layouts.frontbase')
 
-@section('title','User Shopcart')
+@section('title','User Order Detail')
 
 @section('content')
     <style>
@@ -197,7 +197,7 @@
         }
     </style>
     <div class="card-body">
-        <h4 class="card-title">User Menu</h4>
+        <h4 class="card-title">User Order Detail</h4>
         @include('home.user.usermenu')
     </div>
     <div class="row">
@@ -206,7 +206,7 @@
                 <div class="col-md-1">
                     <p style="white-space:pre-wrap; ">
                     <div class="product-preview__title">
-                        <h1 class="h1 alt-h1 "> User Shopcart</h1>
+                        <h1 class="h1 alt-h1 "> User Order Detail</h1>
                     </div>
                     </p>
                 </div>
@@ -215,12 +215,39 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1">
                                 <div class="cart_container">
-                                    <div class="cart_title">Shopping Cart<small></small></div>
+                                    <table class="shopping-cart-table table">
+                                        <tr>
+                                            <th>Name :</th>
+                                            <td>{{$order->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone :</th>
+                                            <td>{{$order->phone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email :</th>
+                                            <td>{{$order->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Address :</th>
+                                            <td>{{$order->address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Note :</th>
+                                            <td>{{$order->note}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status :</th>
+                                            <td>{{$order->status}}</td>
+                                        </tr>
+
+
+                                    </table>
+                                    <div class="cart_title">Order Detail Cart<small></small></div>
                                     <div class="cart_items">
                                         <ul class="cart_list">
-                                            @php($total=0)
-                                            @foreach($data as $rs)
-                                            <li class="cart_item clearfix">
+                                            @foreach($orderpackages as $rs)
+                                                <li class="cart_item clearfix">
                                                     <div class="cart_item_image"><img
                                                             src="{{Storage::url($rs->package->image)}}" alt=""></div>
                                                     <div
@@ -231,10 +258,8 @@
                                                         </div>
                                                         <div class="cart_item_quantity cart_info_col">
                                                             <div class="cart_item_title">Quantity</div>
-                                                            <form action="{{route('shopcart.update',['id' =>$rs->package->id])}}" method="post">
-                                                                @csrf
-                                                                <input name="quantity" type="number" value="{{$rs->quantity}}" min="1" max="{{$rs->package->quantity}}" onchange="this.form.submit()">
-                                                            </form>
+                                                            {{$rs->quantity}}
+
                                                         </div>
                                                         <div class="cart_item_price cart_info_col">
                                                             <div class="cart_item_title">Price</div>
@@ -242,33 +267,28 @@
                                                         </div>
                                                         <div class="cart_item_price cart_info_col">
                                                             <div class="cart_item_title">Total</div>
-                                                            <div class="cart_item_text">{{$rs->package->price * $rs->quantity}}</div>
+                                                            <div class="cart_item_text">{{$rs->amount}}</div>
                                                         </div>
                                                         <td>
-                                                            <a href="{{route('shopcart.destroy', ['id'=>$rs->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-danger">Delete</button></a>
+                                                            <a href="#"
+                                                               onclick="return confirm('Deleting !! Are you sure ?')">
+                                                                <button type="button" class="btn btn-danger">Delete
+                                                                </button>
+                                                            </a>
                                                         </td>
                                                     </div>
+                                                    @endforeach
 
-                                                @php( $total += $rs->package->price * $rs->quantity)
-                                                @endforeach
-
-                                            </li>
+                                                </li>
                                         </ul>
                                     </div>
                                     <div class="order_total">
                                         <div class="order_total_content text-md-right">
                                             <div class="order_total_title">Order Total:</div>
-                                            <div class="order_total_amount">{{$total}}</div>
+                                            <div class="order_total_amount">{{$order->total}}</div>
                                         </div>
                                     </div>
-                                    <div class="cart_buttons">
 
-                                        <form action="{{route("shopcart.order")}}" method="post">
-                                            @csrf
-                                            <input name="total" value="{{$total}}" type="hidden">
-                                        <button type="submit" class="button cart_button_clear">Place Order</button>
-                                        </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>

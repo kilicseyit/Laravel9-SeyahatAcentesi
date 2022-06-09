@@ -24,4 +24,9 @@ class Package extends Model
         return $this->hasMany(ShopCart::class);
     }
 
+    public function orderpackage()
+    {
+        return $this->hasMany(OrderPackage::class);
+    }
+
 }

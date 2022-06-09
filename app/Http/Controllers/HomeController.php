@@ -135,14 +135,13 @@ class HomeController extends Controller
 
     public function package($id)
     {
+        $reviews = Comment::whereIn('package_id', [$id])->where('status', 'True')->get();
         $data=Package::find($id);
         $images = DB::table('images')->where('package_id', $id)->get();
-        $reviews = Comment::where('package_id',$id)->get();
         return view('home.package',[
             'data'=>$data,
             'images'=>$images,
             'reviews'=>$reviews,
-
         ]);
     }
     public function logout(Request $request)
