@@ -216,10 +216,18 @@
                     </label> <label class="radio"> <input type="radio" name="ram" value="256GB"> <span>3 GÜN</span>
                     </label></div>
                 <div><span class="font-weight-bold">Seller:</span><span class="ml-2">Sargam Electronics</span></div>
-                <div class="mt-3">
-                    <button class="btn btn-dark mr-2" type="button">ADD TO CART</button>
-                    <button class="btn btn-success" type="button">BUY NOW</button>
-                </div>
+                <form action="{{route('shopcart.store')}}" method="post">
+                    @csrf
+                    <div class="qty-input">
+                        <span class="text-uppercase">QTY</span>
+                        <input class="input" name="quantity" type="number" value="1" min="1">
+                        <input class="input" name="id" value="{{$data->id}}" type="hidden">
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-shoppimng-cart"></i>ADD TO CART</button>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -232,8 +240,8 @@
                 <div class="input-group" href="#review">
                     <strong class="text-uppercase ">Your Rating : </strong>
                     @php
-                    $average = $data->comment->average('rate');
-                        @endphp
+                        $average = $data->comment->average('rate');
+                    @endphp
 
                     <div class="rate text-center">
                         <input type="radio" id="star5" name="rate" value="5"/><label for="star5"></label>
