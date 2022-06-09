@@ -1,4 +1,4 @@
-<a href="#" class="fh5co-sub-ddown">King Hotel</a>
+<a href="#" class="fh5co-sub-ddown"></a>
         <ul class="fh5co-sub-menu">
             <li><a href="{{route('userpanel.index')}}" target="_blank">My Profile</a></li>
             <li><a href="" target="_blank">My Orders</a></li>

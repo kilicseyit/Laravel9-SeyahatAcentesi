@@ -51,7 +51,7 @@
 
     <div class="services" id="service">
         <div class="container">
-            <h2 class="text-capitalize">Enjoy <span>Resort</span></h2>
+            <h2 class="text-capitalize">Enjoy Resort <span></span></h2>
             <p>It is a long established fact that a reader will be distracted by the readable content of a o</p>
         </div>
         <div class="small-container">
@@ -95,7 +95,7 @@
 
     <div class="services" >
         <div class="container" style="">
-            <h2 class="text-center">Latest <span>Tours</span></h2>
+            <h2 class="text-center">Latest Tours <span></span></h2>
         </div>
         <br>
         <div class="small-container">

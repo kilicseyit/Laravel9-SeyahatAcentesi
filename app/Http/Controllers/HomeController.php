@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public static function maincategorlist()
+    public static function maincategorylist()
     {
-
+        return Category::where('parent_id', '=', 0)->with('children')->get();
     }
 
 
